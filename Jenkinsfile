@@ -6,6 +6,7 @@ pipeline{
                   script {
                     if (env.Env == 'dev') {
                 sh 'tar -cvzf dist.tar.gz *'
+                sh 'ls -la /var/lib/jenkins/workspace/new_job'
                 try {
     sh 'scp /path/to/dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
 } catch (Exception e) {
