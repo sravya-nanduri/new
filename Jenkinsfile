@@ -22,7 +22,7 @@ pipeline{
                 sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
-                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html && sudo sed -i s/*dev/*qa/g Dockerfile"'
+                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html && sudo sed -i s|npm run build:dev|npm run build:qa|g Dockerfile"'
                 // sh 'ssh jenkins@13.127.219.105 "sudo docker tag smartims$env$BUILD_NUMBER:latest sravyananduri/smartims$env$BUILD_NUMBER"' 
                 // sh 'ssh jenkins@13.127.219.105 "sudo docker push sravyananduri/smartims$env$BUILD_NUMBER"'
                 // sh 'ssh jenkins@13.127.219.105 "sudo docker rm smartims$env -f && sudo docker run -td --name smartims$env -p 9001:80 smartims$env$BUILD_NUMBER"'
