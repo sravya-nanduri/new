@@ -11,7 +11,7 @@ pipeline{
                 
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
-                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims$env.env$BUILD_NUMBER Dockerfile &&  sudo docker rm smartims$env.env -f && sudo docker run -td --name smartims$env.env -p 9001:80 smartimsenv.env$BUILD_NUMBER"'
+                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims$env.env$BUILD_NUMBER /var/www/html/Dockerfile &&  sudo docker rm smartims$env.env -f && sudo docker run -td --name smartims$env.env -p 9001:80 smartimsenv.env$BUILD_NUMBER"'
                     }
                   }
                   script {
