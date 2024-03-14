@@ -4,7 +4,7 @@ pipeline{
             stage('deployment'){         
                 steps{
                   script {
-                    if (env.Env == 'dev') {
+                    if (env.env == 'dev') {
                         sh 'echo ${env.env}'
                       // sh 'tar -cvzf dist.tar.gz *'
                 // sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
