@@ -8,10 +8,12 @@ pipeline{
                         sh 'echo $env.Env'
                       sh 'tar -cvzf dist.tar.gz *'
                 sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
-                
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
-                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims$env.env$BUILD_NUMBER -f Dockerfile . &&  sudo docker rm smartims$env.env -f && sudo docker run -td --name smartims$env.env -p 9001:80 smartimsenv.env$BUILD_NUMBER"'
+                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims$env.env$BUILD_NUMBER -f Dockerfile .'
+                sh 'ssh jenkins@13.127.219.105 "docker tag smartims$env.env$BUILD_NUMBER:latest sravyananduri/smartims$env.env$BUILD_NUMBER"' 
+                sh 'ssh jenkins@13.127.219.105 "docker push sravyananduri/smartims$env.env$BUILD_NUMBER"'
+                sh 'sudo docker rm smartims$env.env -f && sudo docker run -td --name smartims$env.env -p 9001:80 smartimsenv.env$BUILD_NUMBER"'
                     }
                   }
                   script {
