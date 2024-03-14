@@ -16,6 +16,7 @@ pipeline{
                         ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"
                         '''
                         sh '''
+                        ssh jenkins@13.127.219.105 "cd /var/www/html/ && ls -la"
                         ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"
                         '''
                         sh '''
