@@ -42,6 +42,7 @@ pipeline{
                 sh 'ssh jenkins@13.127.219.105 "sudo docker push sravyananduri/smartims$env$BUILD_NUMBER"'
                 sh 'ssh jenkins@13.127.219.105 "sudo docker rm smartims$env -f && sudo docker run -td --name smartims$env -p 9003:80 smartims$env$BUILD_NUMBER"'
                   }
+                }
                 script {
                     if (env.Env == 'prod') {
                sh 'echo $env.Env'
@@ -64,5 +65,4 @@ pipeline{
                   cleanWs()
               }
     }
-}
 }
