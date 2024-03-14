@@ -23,7 +23,7 @@ pipeline{
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
                 sh '''
-                        ssh "jenkins@13.127.219.105 
+                        ssh jenkins@13.127.219.105 
                         "sed -i 's/npm run build:dev/npm run build:qa/' /var/www/html/Dockerfile"
                     '''
                 sh 'ssh jenkins@13.127.219.105 "sudo docker tag smartims$env$BUILD_NUMBER:latest sravyananduri/smartims$env$BUILD_NUMBER"' 
