@@ -7,7 +7,7 @@ pipeline{
                     if (env.Env == 'dev') {
                 
                 echo 'Before tar command'
-sh 'tar -cvzf dist.tar.gz *'
+sh 'tar -cvzf dist.tar.gz * && echo 'tar command done''
 echo 'After tar command'
 
                 sh 'ls -la /var/lib/jenkins/workspace/new_job'
