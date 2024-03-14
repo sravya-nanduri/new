@@ -17,6 +17,8 @@ pipeline{
                         '''
                         sh '''
                         ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"
+                        '''
+                        sh '''
                         ssh jenkins@13.127.219.105 "docker build -t smartims:${BUILD_NUMBER}:${env.Env} . &&  docker rm smartims -f && docker run -td --name smartims -p 9000:80 smart
                         '''
                     }
