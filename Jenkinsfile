@@ -7,7 +7,6 @@ pipeline{
                     if (env.Env == 'dev') {
                         echo 'Before tar command'
                         sh 'tar -cvzf dist.tar.gz *'
-                        echo 'After tar command'
                         sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
                         sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                         // sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
