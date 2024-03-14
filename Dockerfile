@@ -16,7 +16,5 @@ RUN mkdir -p  /var/www/html
 WORKDIR /var/www/html/
 
 COPY --from=dist /app/build/ ./
-# RUN mkdir static
-# RUN mv css static/
-# RUN mv js static/
+
 EXPOSE 80
