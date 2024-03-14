@@ -61,7 +61,26 @@ pipeline{
             }
         }
     post{
-        always { 
+        success {
+                script {
+                  if (env.Env == 'dev') {      
+                      googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} from Branch ${Branch_name} on Environment ${env.Env} was successfull. Check output in https://3.127.219.105:9000"  , url: "https://chat.googleapis.com/v1/spaces/AAAAsd9I_OM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n4j_V50Bj_WIXBbyYN_XKmb9XPIEDXePemjYp_mfMro"                                             
+                  }
+                  else if (env.Env == 'qa') {
+                      googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} from Branch ${Branch_name} on Environment ${env.Env} was successfull. Check output in https://"  , url: "https://chat.googleapis.com/v1/spaces/AAAAsd9I_OM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n4j_V50Bj_WIXBbyYN_XKmb9XPIEDXePemjYp_mfMro"
+                  }
+                  else if (env.Env == 'stage'){
+                      googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} from Branch ${Branch_name} on Environment ${env.Env} was successfull. Check output in https://divami.com/"  , url: "https://chat.googleapis.com/v1/spaces/AAAAsd9I_OM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n4j_V50Bj_WIXBbyYN_XKmb9XPIEDXePemjYp_mfMro"
+                  }
+                  else{
+                      googlechatnotification   message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} from Branch ${Branch_name} on Environment ${env.Env} was successfull. Check output in https://divami.com/"  , url: "https://chat.googleapis.com/v1/spaces/AAAAsd9I_OM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n4j_V50Bj_WIXBbyYN_XKmb9XPIEDXePemjYp_mfMro"
+                  }
+                }
+              }
+              failure {                            
+                  googlechatnotification message: "Project Name: ${JOB_NAME} Build ${BUILD_NUMBER} from Branch ${Branch_name} on Environment ${env.Env} is Failed: Check output logs at  ${RUN_DISPLAY_URL}"  , url: "https://chat.googleapis.com/v1/spaces/AAAAsd9I_OM/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n4j_V50Bj_WIXBbyYN_XKmb9XPIEDXePemjYp_mfMro"                           
+              }
+        always {
                   cleanWs()
               }
     }
