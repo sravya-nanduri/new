@@ -9,7 +9,7 @@ pipeline{
                 sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && tar -xvzf dist.tar.gz"'
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
-                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims${env.Env}${BUILD_NUMBER} Dockerfile.dev &&  sudo docker rm smartims${env.Env} -f && sudo docker run -td --name smartims${env.Env} -p 9001:80 smartims${env.Env}${BUILD_NUMBER}"'
+                sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims${BUILD_NUMBER} Dockerfile.dev &&  sudo docker rm smartims${env.Env} -f && sudo docker run -td --name smartims${env.Env} -p 9001:80 smartims${BUILD_NUMBER}"'
                     }
                   }
                   script {
