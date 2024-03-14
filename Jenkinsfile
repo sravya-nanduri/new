@@ -29,4 +29,9 @@ echo 'After tar command'
                 }
             }
         }
+    post{
+        always { 
+                  cleanWs()
+              }
+    }
 }
