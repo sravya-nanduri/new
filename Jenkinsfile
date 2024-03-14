@@ -5,12 +5,10 @@ pipeline{
                 steps{
                   script {
                     if (env.Env == 'dev') {
-                
-                echo 'Before tar command'
-sh 'tar -cvzf dist.tar.gz *'
-echo 'After tar command'
-
-                sh 'ls -la /var/lib/jenkins/workspace/new_job'
+                        echo 'Before tar command'
+                        sh 'tar -cvzf dist.tar.gz *'
+                        echo 'After tar command'
+                        sh 'ls -la /var/lib/jenkins/workspace/new_job'
                 //sh 'scp dist.tar.gz jenkins@13.127.219.105:/var/www/html/'
                 //sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/demo/smartims && tar -xvzf dist.tar.gz"'
                 // sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo chown -R jenkins:jenkins *"'
