@@ -2,9 +2,11 @@ FROM node:20.11.1 AS dist
 
 WORKDIR /app
 
-COPY ./ .
+COPY .package*.json ./
 
 RUN npm i
+
+COPY ./ .
 
 RUN npm run build:dev
 
