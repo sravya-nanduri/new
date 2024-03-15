@@ -12,7 +12,7 @@ pipeline{
                 sh 'ssh jenkins@13.127.219.105 "cd /var/www/html/ && sudo docker build -t smartims$BUILD_NUMBER -f Dockerfile ."'
                 sh 'ssh jenkins@13.127.219.105 "sudo docker tag smartims$BUILD_NUMBER:latest sravyananduri/smartims$BUILD_NUMBER"' 
                 sh 'ssh jenkins@13.127.219.105 "sudo docker push sravyananduri/smartims$BUILD_NUMBER"'
-                sh 'ssh jenkins@13.127.219.105 "sudo docker kill $(docker ps -q) && sudo docker run -td --name smartims -p 9001:80 smartims$BUILD_NUMBER"'
+                sh 'ssh jenkins@13.127.219.105 "sudo docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && sudo docker run -td --name smartims -p 9001:80 smartims$BUILD_NUMBER"'
                   
                   }
                }
