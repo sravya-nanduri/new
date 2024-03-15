@@ -2,7 +2,7 @@ FROM node:20.11.1 AS dist
 
 WORKDIR /app
 
-COPY .package*.json ./
+COPY package*.json ./
 
 RUN npm i
 
